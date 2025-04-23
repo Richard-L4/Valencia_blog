@@ -23,11 +23,11 @@ body {
     border-radius: 3px; /* or 50% if you want it circular */
   }
 
-  .navbar-text {
+.navbar .navbar-text {
     font-family: Lato, sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    color: #4A4A4F;
+    color: #3939a2 !important;
 }
 
 .light-bg {
