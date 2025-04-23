@@ -1,67 +1,85 @@
+{# Extend the base template to inherit common layout elements like header, footer, etc. #}
 {% extends "base.html" %}
+{# Load the static template tag to use static files like images, CSS, JS #}
 {% load static %}
 
+{# Define the content block which will be inserted into the base.html #}
 {% block content %}
 
-<!-- index.html content starts here -->
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid bg-light py-5">
+  <div class="row justify-content-center">
 
-        <!-- Blog Entries Column -->
-        <div class="col-12 mt-3 left">
-            <div class="row">
-                {% for post in post_list %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="image-container">
-                                {% if "placeholder" in post.featured_image.url %}
-                                <img class="card-img-top" src="{% static 'images/default.jpg' %}"
-                                  alt="placeholder image">
-                                {% else %}
-                                <img class="card-img-top" src=" {{ post.featured_image.url }}"
-                                  alt="{{ post.title }}">
-                                {% endif %}
-                                <div class="image-flash">
-                                    <p class="author">Author: {{ post.author }}</p>
-                                </div>
-                            </div>
-                            <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                                <h2 class="card-title">{{ post.title }}</h2>
-                            </a>
-                            <p class="card-text">{{ post.excerpt }}</p>
-                            <hr />
-                            <p class="card-text text-muted h6">{{ post.created_on}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {% if forloop.counter|divisibleby:3 %}
-            </div>
-            <div class="row">
-                {% endif %}
-                {% endfor %}
+    {# Loop through each blog post in the list of posts passed to the template #}
+    {% for post in post_list %}
+    <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
+      <div class="card h-100 shadow-sm w-100 card-hover">
 
-            </div>
+        {# Check if the post uses the default placeholder image #}
+        {% if "placeholder" in post.featured_image.url %}
+          {# Use a default static image if a placeholder is detected #}
+          <img src="{% static 'images/default.jpg' %}" class="card-img-top" alt="placeholder image">
+        {% else %}
+          {# Otherwise, display the actual featured image from the post #}
+          <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
+        {% endif %}
+
+        <div class="card-body d-flex flex-column">
+          {# Link to the detail page of the individual post #}
+          <a href="{% url 'post_detail' post.slug %}" class="post-link">
+            {# Display the post title as a card heading #}
+            <h5 class="card-title">{{ post.title }}</h5>
+            
+            {# Show the author of the post as a badge #}
+            <span class="badge text-bg-info">Author: {{ post.author }}</span>
+
+            {# If the post has an excerpt, show it #}
+            {% if post.excerpt %}
+              <p class="card-text">{{ post.excerpt }}</p>
+            {% endif %}
+
+            {# Show the first 100 characters of the post content as a preview #}
+            <p class="card-text">{{ post.content|slice:":100" }}...</p>
+          </a>
+
+          {# Button that also links to the full post detail page #}
+          <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary mt-auto">Read More</a>
+
+          {# Show the post's creation date #}
+          <p class="card-text text-muted h6 mt-2">{{ post.created_on }}</p>
         </div>
+      </div>
     </div>
-    {% if is_paginated %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREVIOUS </a></li>
-            {% endif %}
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
+    {% endfor %}
+  </div>
+
+  {# If pagination is enabled, display the pagination controls #}
+  {% if is_paginated %}
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+
+      {# Show the "Previous" button if there is a previous page #}
+      {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
+      </li>
+      {% endif %}
+
+      {# Show the "Next" button if there is a next page #}
+      {% if page_obj.has_next %}
+      <li class="page-item">
+        <a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo;</a>
+      </li>
+      {% endif %}
+
+    </ul>
+  </nav>
+  {% endif %}
 </div>
 
-<!-- index.html content ends here -->
+{# End of content block #}
 {% endblock %}
 
+{# Custom footer block for copyright notice #}
 {% block copyright %}
-Copyright Matt Rudge 2023
+Copyright 2025 Richard Wells
 {% endblock %}

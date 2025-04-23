@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
-from django.http import HttpResponseRedirect
-
+from django.http import HttpResponseRedirect, JsonResponse
+from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 
 from .models import Post, Comment
 from .forms import CommentForm
@@ -97,3 +98,29 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
+@login_required
+@csrf_protect
+def update_reaction(request):
+    if request.method == "POST" and request.user.is_authenticated:
+        comment_id = request.POST.get("comment_id")
+        action = request.POST.get("action")  # expects 'like' or 'dislike'
+
+        try:
+            comment = Comment.objects.get(pk=comment_id)
+
+            if action == "like":
+                comment.likes += 1
+            elif action == "dislike":
+                comment.dislikes += 1
+
+            comment.save()
+
+            return JsonResponse({
+                'likes': comment.likes,
+                'dislikes': comment.dislikes
+            })
+
+        except Comment.DoesNotExist:
+            return JsonResponse({'error': 'Comment not found'}, status=404)
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)

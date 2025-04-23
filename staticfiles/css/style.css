@@ -9,8 +9,21 @@ body {
     color: #4A4A4F;
 }
 
-.red-o {
+.red-a {
     color: #E84610;
+}
+
+.flag-icon {
+    height: 20px;
+    width: auto;
+    border-radius: 3px; /* or 50% if you want it circular */
+  }
+
+.navbar-text {
+    font-family: Lato, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #4A4A4F;
 }
 
 .thin {
@@ -34,10 +47,16 @@ body {
     background-color: transparent;
 }
 
+.card-hover:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
 .image-container {
     position: relative;
 }
-
+/*
 .image-flash {
     position: absolute;
     bottom: 5%;
@@ -45,25 +64,44 @@ body {
     left: -2px;
     background-color: #188181;
 }
-
+*/
 .scale {
     width: 100%;
     height: auto;
 }
 
+/*
 .author {
     color: white;
     margin: 4px;
     text-transform: uppercase;
 }
-
+*/
+/*
 .masthead {
     margin-top: 10px;
     overflow: hidden;
     position: relative;
     display: inline-block;
-    height: 33vh;
+    height: auto;
     width: 100%;
+}
+*/
+.badge.text-bg-info {
+    background-color: #17a2b8 !important; /* Bootstrap's info color */
+    color: white !important; /* Ensure the text is white */
+}
+
+.masthead {
+    display: flex;
+    flex-direction: row; /* Default: text beside image */
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: auto;
 }
 
 .masthead-text {
@@ -81,13 +119,10 @@ body {
     content: "";
     position: absolute;
     top: 0;
-    right: 90%;
+    right: 0%;
     height: 100%;
-    width: 150%;
+    width: 5%;
     background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
     z-index: 100;
 }
 
@@ -134,6 +169,36 @@ body {
     text-decoration: underline;
 }
 
+.reaction-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: flex-start; /* You can change this to 'center' or 'flex-end' */
+}
+
+.reaction-buttons button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reaction-buttons button:hover {
+    background-color: #e0e0e0;
+}
+
+.reaction-buttons .like-count,
+.reaction-buttons .dislike-count {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+
 .btn-like {
     color: #E84610;
     border: none;
@@ -158,4 +223,17 @@ body {
 
 .approval {
     color: rgb(222, 146, 168);
+}
+
+/* Responsive switch: Stack text above image */
+@media screen and (max-width: 768px) {
+    .masthead {
+        flex-direction: column; /* Stack items vertically */
+        text-align: center; /* Optional: center text */
+    }
+
+    .masthead-image img {
+        width: 100%; /* Responsive full width image */
+        height: auto;
+    }
 }

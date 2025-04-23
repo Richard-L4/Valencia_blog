@@ -9,12 +9,25 @@ body {
     color: #4A4A4F;
 }
 
-.red-o {
+.red-a {
     color: #E84610;
 }
 
 .thin {
     font-weight: 300;
+}
+
+.flag-icon {
+    height: 20px;
+    width: auto;
+    border-radius: 3px; /* or 50% if you want it circular */
+  }
+
+  .navbar-text {
+    font-family: Lato, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #4A4A4F;
 }
 
 .light-bg {
@@ -34,6 +47,25 @@ body {
     background-color: transparent;
 }
 
+
+.card-hover:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+}
+
+
+.card {
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.05);
+}
+
+
+
 .image-container {
     position: relative;
 }
@@ -50,11 +82,16 @@ body {
     width: 100%;
     height: auto;
 }
-
+/*
 .author {
     color: white;
     margin: 4px;
     text-transform: uppercase;
+}
+*/
+.badge.text-bg-info {
+    background-color: #17a2b8 !important; /* Bootstrap's info color */
+    color: white !important; /* Ensure the text is white */
 }
 
 .masthead {
@@ -62,7 +99,7 @@ body {
     overflow: hidden;
     position: relative;
     display: inline-block;
-    height: 33vh;
+    height: auto;
     width: 100%;
 }
 
@@ -85,10 +122,7 @@ body {
     height: 100%;
     width: 150%;
     background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
+   
 }
 
 .post-link {
@@ -133,6 +167,36 @@ body {
     color: #445261;
     text-decoration: underline;
 }
+
+.reaction-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: flex-start; /* You can change this to 'center' or 'flex-end' */
+}
+
+.reaction-buttons button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reaction-buttons button:hover {
+    background-color: #e0e0e0;
+}
+
+.reaction-buttons .like-count,
+.reaction-buttons .dislike-count {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
 
 .btn-like {
     color: #E84610;
