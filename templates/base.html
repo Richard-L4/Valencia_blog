@@ -11,7 +11,12 @@
 <head>
     <title>Valencia Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicons/site.webmanifest' %}">
+    
+    
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -36,7 +41,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">V<span class="red-a">a</span>lencia<span
                         class="thin">|ES</span></span></a>
-                        <img src="{% static 'images/Valencia-flag.jpg' %}" alt="Spanish flag" class="flag-icon ms-2"></a>
+            <img src="{% static 'images/Valencia-flag.jpg' %}" alt="Spanish flag" class="flag-icon ms-2"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -74,7 +79,7 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- displaying Django messages -->
     <div class="container">
         <div class="row">
