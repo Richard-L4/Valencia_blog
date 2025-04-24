@@ -225,6 +225,7 @@ body {
     color: rgb(222, 146, 168);
 }
 
+
 /* Responsive switch: Stack text above image */
 @media screen and (max-width: 768px) {
     .masthead {

@@ -39,7 +39,7 @@
 
             {# Show the first 100 characters of the post content as a preview #}
             <p class="card-text">{{ post.content|slice:":100" }}...</p>
-          </a>
+          
 
           {# Button that also links to the full post detail page #}
           <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary mt-auto">Read More</a>
@@ -82,4 +82,10 @@
 {# Custom footer block for copyright notice #}
 {% block copyright %}
 Copyright 2025 Richard Wells
+{% endblock %}
+
+
+{# Script block for JS #}
+{% block extras %}
+<script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}

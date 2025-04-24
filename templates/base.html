@@ -12,12 +12,14 @@
 <head>
     <title>Valencia Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google" content="notranslate">
+
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon.ico/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon.ico/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon.ico/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'favicon.ico/site.webmanifest' %}">
-    
-    
+
+
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -43,7 +45,7 @@
             <a class="navbar-brand" href="{% url 'home' %}">
                 <span class="brand">V<span class="red-a">a</span>lencia<span class="thin">|ES</span></span>
                 <img src="{% static 'images/Valencia-flag.jpg' %}" alt="Spanish flag" class="flag-icon ms-2">
-              </a>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -75,9 +77,15 @@
                     </li>
                     {% endif %}
                 </ul>
-                <span class="navbar-text">
-                    Una guia de Commmunidad Valencia
-                </span>
+                <div class="ms-auto">
+                    <span class="navbar-text text-muted">
+                        <span data-translate="guide">Una guía de Comunidad Valenciana</span> &nbsp;|&nbsp;
+                        <button class="btn btn-sm btn-outline-secondary mx-1 lang-btn" data-lang="en">English</button>
+                        <button class="btn btn-sm btn-outline-secondary mx-1 lang-btn" data-lang="es">Español</button>
+
+                    </span>
+                </div>
+
             </div>
         </div>
     </nav>
@@ -128,7 +136,9 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
         </script>
     {% block extras %}
+    <script src="{% static 'js/comments.js' %}"></script>
     {% endblock %}
+
 </body>
 
 </html>
