@@ -39,7 +39,7 @@
 
             {# Show the first 100 characters of the post content as a preview #}
             <p class="card-text">{{ post.content|slice:":100" }}...</p>
-          
+              </a>
 
           {# Button that also links to the full post detail page #}
           <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary mt-auto">Read More</a>
