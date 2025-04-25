@@ -38,7 +38,7 @@
             {% endif %}
 
             {# Show the first 100 characters of the post content as a preview #}
-            <p class="card-text">{{ post.content|slice:":100" }}...</p>
+            <p class="card-text">{{ post.content|slice:":100" | striptags }}...</p>
               </a>
 
           {# Button that also links to the full post detail page #}
