@@ -35,7 +35,7 @@ body {
 }
 
 .dark-bg {
-    background-color: #445261;
+    background-color: #3939a2 
 }
 
 .main-bg {
@@ -215,6 +215,18 @@ body {
     color: #E84610;
     background: transparent;
     border: none;
+}
+
+.btn-secondary,
+.btn-secondary {
+    background-color: #188181;
+    color: #fff;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active {
+    background-color: #fff;
+    color: #23BBBB;
 }
 
 .faded {
