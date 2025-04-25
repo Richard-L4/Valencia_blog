@@ -119,9 +119,9 @@ body {
     content: "";
     position: absolute;
     top: 0;
-    right: 0%;
+    right: -5%;
     height: 100%;
-    width: 5%;
+    width: -5%;
     background: #445261;
     z-index: 100;
 }
