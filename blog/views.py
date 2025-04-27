@@ -101,26 +101,49 @@ def comment_delete(request, slug, comment_id):
 @login_required
 @csrf_protect
 def update_reaction(request):
+    """
+    Handle POST requests to update the like or dislike count for a comment.
+
+    This view expects a POST request containing:
+    - 'comment_id': the ID of the comment to update
+    - 'action': a string, either 'like' or 'dislike'
+
+    It ensures the user is authenticated and the
+    request is protected against CSRF.
+    If the comment is found and the action is valid,
+    it updates the corresponding field
+    and returns the new counts as JSON.
+    Returns:
+        JsonResponse: Updated like/dislike counts if successful,
+                      or an error message with appropriate HTTP status.
+    """
+    # Ensure the request is a POST and the user is authenticated
     if request.method == "POST" and request.user.is_authenticated:
         comment_id = request.POST.get("comment_id")
-        action = request.POST.get("action")  # expects 'like' or 'dislike'
+        action = request.POST.get("action")
 
         try:
+            # Try to retrieve the comment by ID
             comment = Comment.objects.get(pk=comment_id)
 
+            # Update the appropriate counter based on the action
             if action == "like":
                 comment.likes += 1
             elif action == "dislike":
                 comment.dislikes += 1
 
+            # Save the updated comment
             comment.save()
 
+            # Return the updated counts
             return JsonResponse({
                 'likes': comment.likes,
                 'dislikes': comment.dislikes
             })
 
         except Comment.DoesNotExist:
+            # Return a 404 error if the comment was not found
             return JsonResponse({'error': 'Comment not found'}, status=404)
 
+    # Return a 400 error for invalid requests (non-POST or unauthenticated)
     return JsonResponse({'error': 'Invalid request'}, status=400)
