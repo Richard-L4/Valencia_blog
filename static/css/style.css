@@ -20,7 +20,7 @@ body {
 .flag-icon {
     height: 20px;
     width: auto;
-    border-radius: 3px; /* or 50% if you want it circular */
+    border-radius: 0.1875rem; /* or 50% if you want it circular */
   }
 
 .navbar .navbar-text {
@@ -74,7 +74,7 @@ body {
     position: absolute;
     bottom: 5%;
     min-width: 30%;
-    left: -2px;
+    left: -0.125rem;
     background-color: #188181;
 }
 
@@ -95,7 +95,7 @@ body {
 }
 
 .masthead {
-    margin-top: 10px;
+    margin-top: 0.625rem;
     overflow: hidden;
     position: relative;
     display: inline-block;
@@ -172,18 +172,18 @@ body {
 
 .reaction-buttons {
     display: flex;
-    gap: 16px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    gap: 1rem;
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
     align-items: center;
     justify-content: flex-start; /* You can change this to 'center' or 'flex-end' */
 }
 
 .reaction-buttons button {
     background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 4px 10px;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.625rem;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -195,7 +195,7 @@ body {
 
 .reaction-buttons .like-count,
 .reaction-buttons .dislike-count {
-    margin-left: 5px;
+    margin-left: 0.3125rem;
     font-weight: bold;
 }
 
