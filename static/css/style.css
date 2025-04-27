@@ -125,6 +125,10 @@ body {
    
 }
 
+.profile-image {
+    width: 80%;
+}
+
 .post-link {
     text-decoration: none;
     color: #445261;
