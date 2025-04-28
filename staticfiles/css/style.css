@@ -39,12 +39,12 @@ body {
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: #d5f0f2;
 }
 
 .card {
     border: none;
-    background-color: transparent;
+    background-color: #d5f0f2;
 }
 
 .card-hover:hover {
@@ -132,7 +132,7 @@ body {
 
 .post-link {
     text-decoration: none;
-    color: #445261;
+    color: #1b1b1c;
 }
 
 .post-link:hover,
@@ -165,7 +165,7 @@ body {
 }
 
 .link {
-    color: #23BBBB;
+    color: #E84610;
     text-decoration: none;
 }
 
