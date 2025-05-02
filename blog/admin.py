@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, Category
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -26,6 +26,10 @@ class PostAdmin(SummernoteModelAdmin):
     # Enables Summernote editor on the 'content' field
     summernote_fields = ('content',)
 
+    # Make categories a horizontal filter (multi-select) in the admin
+    filter_horizontal = ('categories',)
+
 
 # Registers the Comment model with the default admin interface
 admin.site.register(Comment)
+admin.site.register(Category)
