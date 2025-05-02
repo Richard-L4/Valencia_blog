@@ -150,6 +150,18 @@ body {
     color: lightgray;
 }
 
+
+.admin-options {
+    position: absolute; /* Remove the admin options from the normal document flow */
+    bottom: 0; /* Positions the buttons at the bottom of the masthead */
+    left: 0; /* Positions the buttons at the left of the masthead */
+    padding: 10px; /* Adds some space around the buttons */
+  }
+  
+  .admin-options a {
+    margin-right: 10px; /* Adds space between the buttons */
+  }
+
 .btn-signup,
 .btn-edit {
     background-color: #188181;
@@ -213,7 +225,7 @@ body {
 
 .btn-delete {
     color: #fff;
-    background: #E84610;
+    background: #dc3545;
 }
 
 .btn-like:hover,
