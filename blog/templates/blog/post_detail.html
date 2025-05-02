@@ -1,21 +1,54 @@
-{% extends 'base.html' %} {% block content %}
+{# Extend the base template to maintain consistent site layout #}
+{% extends 'base.html' %}
+
+{# Begin content block to inject into base.html #}
+{% block content %}
+
+{# Load static files and crispy forms #}
 {% load static %}
 {% load crispy_forms_tags %}
 
+{# ------------------------------ #}
+{# Django Messages (e.g. success or error) #}
+{# ------------------------------ #}
+{% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{# ------------------------------ #}
+{# Post Masthead Section          #}
+{# ------------------------------ #}
 <div class="masthead">
   <div class="container">
     <div class="row g-0">
+      
+      {# Left column: Post title, author, date, and admin options #}
       <div class="col-md-6 masthead-text">
-        <!-- Post title goes in these h1 tags -->
         <h1 class="post-title">{{ post.title }}</h1>
-        <!-- Post author goes before the | the post's created date goes after -->
         <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
+
+        {# Show Edit/Delete buttons if user is staff (admin) #}
+        {% if request.user.is_staff %}
+          <div class="admin-options mt-3">
+            <a href="{% url 'edit_post' post.slug %}" class="btn btn-warning btn-sm me-2">Edit</a>
+            <a href="{% url 'delete_post' post.slug %}" class="btn btn-danger btn-sm">Delete</a>
+          </div>
+        {% endif %}
       </div>
-      <div class=" d-md-block col-md-6 masthead-image">
+
+      {# Right column: Featured image or default placeholder #}
+      <div class="d-md-block col-md-6 masthead-image">
         {% if "placeholder" in post.featured_image.url %}
-        <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder image">
+          <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder image">
         {% else %}
-        <img src="{{ post.featured_image.url }}" class="scale" alt="{{ post.title }}">
+          <img src="{{ post.featured_image.url }}" class="scale" alt="{{ post.title }}">
         {% endif %}
       </div>
     </div>
