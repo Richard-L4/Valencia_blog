@@ -155,11 +155,11 @@ body {
     position: absolute; /* Remove the admin options from the normal document flow */
     bottom: 0; /* Positions the buttons at the bottom of the masthead */
     left: 0; /* Positions the buttons at the left of the masthead */
-    padding: 10px; /* Adds some space around the buttons */
+    padding: 0.625rem; /* Adds some space around the buttons */
   }
   
   .admin-options a {
-    margin-right: 10px; /* Adds space between the buttons */
+    margin-right: 0.625rem; /* Adds space between the buttons */
   }
 
 .btn-signup,

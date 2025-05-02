@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import About
 from .forms import CollaborateForm
@@ -13,14 +13,17 @@ def about_me(request):
         collaborate_form = CollaborateForm(data=request.POST)
         if collaborate_form.is_valid():
             collaborate_form.save()
-            messages.add_message(
-                request, 
-                messages.SUCCESS,
-                "Collaboration request received! I endeavour to respond within 2 working days."
+            messages.success(
+                request,
+                "Collaboration request received! I endeavour"
+                " to respond within 2 working days."
             )
+            return redirect("about")  # Use your URL name here
+
+    else:
+        collaborate_form = CollaborateForm()
 
     about = About.objects.all().order_by('-updated_on').first()
-    collaborate_form = CollaborateForm()
 
     return render(
         request,
