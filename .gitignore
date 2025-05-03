@@ -1,3 +1,6 @@
 venv/
 env.py
 blog/fixtures/
+# Ignore Python cache files
+*.pyc
+__pycache__/
