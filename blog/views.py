@@ -1,11 +1,11 @@
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse
 from django.views import generic
 from django.views.decorators.csrf import csrf_protect
+
 
 from .models import Post, Comment
 from .forms import CommentForm
@@ -20,7 +20,7 @@ class PostList(generic.ListView):
     template_name = "blog/index.html"
     paginate_by = 6
 
-  
+
 def post_detail(request, slug):
     """
     Display an individual post with comments.
