@@ -15,8 +15,8 @@ def about_me(request):
             collaborate_form.save()
             messages.success(
                 request,
-                "Collaboration request received! I endeavour"
-                " to respond within 2 working days."
+                "Collaboration request received! I aim"
+                " to respond within 5 working days."
             )
             return redirect("about")  # Use your URL name here
 
