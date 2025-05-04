@@ -70,23 +70,6 @@ body {
     height: auto;
 }
 
-/*
-.author {
-    color: white;
-    margin: 4px;
-    text-transform: uppercase;
-}
-*/
-/*
-.masthead {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    height: auto;
-    width: 100%;
-}
-*/
 .badge.text-bg-info {
     background-color: #17a2b8 !important; /* Bootstrap's info color */
     color: white !important; /* Ensure the text is white */
