@@ -36,7 +36,7 @@
 
         {# Show Edit/Delete buttons if user is staff (admin) #}
         {% if request.user.is_staff %}
-          <div class="admin-options mt-3">
+          <div class="admin-options mt-3 d-none d-md-block">
             <a href="{% url 'edit_post' post.slug %}" class="btn btn-warning btn-sm me-2">Edit</a>
             <a href="{% url 'delete_post' post.slug %}" class="btn btn-danger btn-sm">Delete</a>
           </div>
