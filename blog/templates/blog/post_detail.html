@@ -12,23 +12,23 @@
 {# Django Messages (e.g. success or error) #}
 {# ------------------------------ #}
 {% if messages %}
-  <div class="container mt-3">
-    {% for message in messages %}
-      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
+<div class="container mt-3">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
+  {% endfor %}
+</div>
 {% endif %}
 
 {# ------------------------------ #}
-{# Post Masthead Section          #}
+{# Post Masthead Section #}
 {# ------------------------------ #}
 <div class="masthead">
   <div class="container">
     <div class="row g-0">
-      
+
       {# Left column: Post title, author, date, and admin options #}
       <div class="col-md-6 masthead-text">
         <h1 class="post-title">{{ post.title }}</h1>
@@ -36,19 +36,19 @@
 
         {# Show Edit/Delete buttons if user is staff (admin) #}
         {% if request.user.is_staff %}
-          <div class="admin-options mt-3 d-none d-md-block">
-            <a href="{% url 'edit_post' post.slug %}" class="btn btn-warning btn-sm me-2">Edit</a>
-            <a href="{% url 'delete_post' post.slug %}" class="btn btn-danger btn-sm">Delete</a>
-          </div>
+        <div class="admin-options mt-3 d-none d-md-block">
+          <a href="{% url 'edit_post' post.slug %}" class="btn btn-warning btn-sm me-2">Edit</a>
+          <a href="{% url 'delete_post' post.slug %}" class="btn btn-danger btn-sm">Delete</a>
+        </div>
         {% endif %}
       </div>
 
       {# Right column: Featured image or default placeholder #}
       <div class="d-md-block col-md-6 masthead-image">
         {% if "placeholder" in post.featured_image.url %}
-          <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder image">
+        <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder image">
         {% else %}
-          <img src="{{ post.featured_image.url }}" class="scale" alt="{{ post.title }}">
+        <img src="{{ post.featured_image.url }}" class="scale" alt="{{ post.title }}">
         {% endif %}
       </div>
     </div>
@@ -61,12 +61,13 @@
     <div class="col card mb-4  mt-3 left  top">
       <div class="card-body">
 
-          <!-- Display categories -->
-          <p>Category: 
-            {% for category in post.categories.all %}
-              {{ category.name }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-          </p>
+        <!-- Display categories -->
+        <p>Category:
+          {% for category in post.categories.all %}
+            {{ category.name }} ({{ category.description }}){% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+        
         <!-- The post content goes inside the card-text. -->
         <!-- Use the | safe filter inside the template tags -->
         <article class="card-text">
