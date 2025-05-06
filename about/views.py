@@ -18,7 +18,7 @@ def about_me(request):
                 "Collaboration request received! I aim"
                 " to respond within 5 working days."
             )
-            return redirect("about")  # Use your URL name here
+            return redirect("about")  
 
     else:
         collaborate_form = CollaborateForm()

@@ -64,10 +64,10 @@
         <!-- Display categories -->
         <p>Category:
           {% for category in post.categories.all %}
-            {{ category.name }} ({{ category.description }}){% if not forloop.last %}, {% endif %}
+          {{ category.name }} ({{ category.description }}){% if not forloop.last %}, {% endif %}
           {% endfor %}
         </p>
-        
+
         <!-- The post content goes inside the card-text. -->
         <!-- Use the | safe filter inside the template tags -->
         <article class="card-text">
@@ -112,12 +112,17 @@
           </div>
           <!-- Font Awesome thumbs up/down buttons -->
           <div class="reaction-buttons mt-2" data-id="{{ comment.id }}">
-            <button class="btn btn-sm btn-outline-success like-btn" title="Like this comment">
-              <i class="fa fa-thumbs-up"></i> <span class="like-count">{{ comment.likes }}</span>
+            <button class="btn btn-sm btn-outline-success like-btn" title="Like this comment" {% if not user.is_authenticated %}disabled{% endif %}>
+              <i class="fa fa-thumbs-up"></i>
+              <span class="like-count">{{ comment.likes }}</span>
             </button>
-            <button class="btn btn-sm btn-outline-danger dislike-btn" title="Dislike this comment">
-              <i class="fa fa-thumbs-down"></i> <span class="dislike-count">{{ comment.dislikes }}</span>
+          
+            <button class="btn btn-sm btn-outline-danger dislike-btn" title="Dislike this comment" {% if not user.is_authenticated %}disabled{% endif %}>
+              <i class="fa fa-thumbs-down"></i>
+              <span class="dislike-count">{{ comment.dislikes }}</span>
             </button>
+
+
           </div>
           {% if not comment.approved and comment.author == user %}
           <p class="approval">
