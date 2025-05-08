@@ -90,7 +90,7 @@
 
 ## HTML  W3C Validation
 
-### Index Page URI (Home)
+### Index Page 1 URI (Home)
 
 ![Alt text](static/images/Index-uri.png)
 
