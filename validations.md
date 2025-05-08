@@ -182,6 +182,10 @@
 
 ![Alt text](static/images/Login-lighthouse.png)
 
+### Logout Page
+
+![Alt text](static/images/Lighthouse-logout.png)
+
 --
 
 
