@@ -141,3 +141,36 @@
 
 --
 
+## Lighthouse Checks
+
+### Index Page (Home)
+
+![Alt text](static/images/Index-lighthouse.png)
+
+### Blog Post Detail Page Logged Out - with comments
+
+![Alt text](static/images/Post-logout-lighthouse.png)
+
+### Blog Post Detail Page Logged In - with comments
+
+![Alt text](static/images/Post-login-lighthouse.png)
+
+### Edit Post Page
+
+![Alt text](static/images/Edit-post-lighthouse.png)
+
+### About Page
+
+![Alt text](static/images/About-lighthouse.png)
+
+### Register Page
+
+![Alt text](static/images/Register-lighthouse.png)
+
+### Login Page
+
+![Alt text](static/images/Login-lighthouse.png)
+
+--
+
+
