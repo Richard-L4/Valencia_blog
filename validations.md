@@ -77,3 +77,67 @@
 ### wsgi.py
 
 ![Alt text](static/images/Valencia-wsgi.png)
+
+--
+
+## JS Hint 
+
+### Comments.js
+
+![Alt text](static/images/Javascript.png)
+
+--
+
+## HTML  W3C Validation
+
+### Index Page URI (Home)
+
+![Alt text](static/images/Index-uri.png)
+
+### Index Page 2 URI (Home)
+
+
+![Alt text](static/images/Index-page2-uri.png)
+
+### Blog Detail Post Page Logged Out - with comments (Source Code)
+
+![Alt text](static/images/Post-logout-val.png)
+
+### Blog Detail Post Page Logged In - with comments(Source Code)
+
+![Alt text](static/images/Post-login-val.png)
+
+### Edit Post Page - For Admin authorised users (Source Code)
+
+![Alt text](static/images/Edit-post-val.png)
+
+### About Page (Source Code)
+
+![Alt text](static/images/About-val.png)
+
+### Register Page (Source Code)
+
+![Alt text](static/images/Register-val.png)
+
+### Login Page (Source Code)
+
+![Alt text](static/images/Login-val.png)
+
+### Logout Page (Source Code)
+
+![Alt text](static/images/Logou-val.png)
+
+--
+
+## CSS W3C Validator
+
+### Satic CSS
+
+![Alt text](static/images/Static-css.png)
+
+### Staticfiles CSS
+
+![Alt text](static/images/Staticfiles-css.png)
+
+--
+
