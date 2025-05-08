@@ -94,10 +94,17 @@
 
 ![Alt text](static/images/Index-uri.png)
 
+### Index Page 1 (Source Code)
+
+![Alt text](static/images/Index-pg1-source-code.png)
+
 ### Index Page 2 URI (Home)
 
-
 ![Alt text](static/images/Index-page2-uri.png)
+
+### Index Page 2 (Source Code)
+
+![Alt text](static/images/Index-page2-source.png)
 
 ### Blog Detail Post Page Logged Out - with comments (Source Code)
 
@@ -146,6 +153,10 @@
 ### Index Page (Home)
 
 ![Alt text](static/images/Index-lighthouse.png)
+
+### Index Page 2 (Home)
+
+![Alt text](static/images/Index-pg2-lighthouse.png)
 
 ### Blog Post Detail Page Logged Out - with comments
 
