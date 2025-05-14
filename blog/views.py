@@ -179,6 +179,7 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
+
 @login_required
 @csrf_protect
 def update_reaction(request):
