@@ -199,6 +199,9 @@ body {
     font-weight: bold;
 }
 
+.reaction-button.active-reaction {
+  border-color: gold;
+}
 
 .btn-like {
     color: #E84610;

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Category
+from .models import Post, Comment, Category, Reaction
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -33,3 +33,4 @@ class PostAdmin(SummernoteModelAdmin):
 # Registers the Comment model with the default admin interface
 admin.site.register(Comment)
 admin.site.register(Category)
+admin.site.register(Reaction)

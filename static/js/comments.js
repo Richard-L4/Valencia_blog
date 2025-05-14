@@ -52,14 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /**
+   /**
    * =================================
    * 3. LIKE / DISLIKE FUNCTIONALITY
    * =================================
-   * For each comment's reaction buttons:
-   *  - Sends a POST request to register a like or dislike.
-   *  - Updates the counts shown without reloading the page.
    */
+  // Method A: Buttons inside .reaction-buttons container
   document.querySelectorAll('.reaction-buttons').forEach(container => {
     const commentId = container.getAttribute('data-id');
     const likeBtn = container.querySelector('.like-btn');
@@ -74,12 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /**
-   * Sends a reaction to the server (like/dislike) for a given comment.
-   * @param {string} commentId - ID of the comment being reacted to
-   * @param {string} action - 'like' or 'dislike'
-   * @param {HTMLElement} container - The container with the like/dislike UI
-   */
   function sendReaction(commentId, action, container) {
     fetch('/comment/react/', {
       method: 'POST',
@@ -98,13 +90,63 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Method B: General-purpose .reaction-button handling
+  const buttons = document.querySelectorAll(".reaction-button");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const commentId = button.dataset.commentId;
+      const action = button.dataset.action;
+
+      fetch("/update-reaction/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "X-CSRFToken": getCSRFToken()
+        },
+        body: `comment_id=${commentId}&action=${action}`
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          console.error(data.error);
+        } else {
+          const likeBtn = document.querySelector(`#like-${commentId}`);
+          const dislikeBtn = document.querySelector(`#dislike-${commentId}`);
+
+          if (data.liked) {
+            likeBtn.classList.add("active-reaction");
+            dislikeBtn.classList.remove("active-reaction");
+          } else if (data.disliked) {
+            dislikeBtn.classList.add("active-reaction");
+            likeBtn.classList.remove("active-reaction");
+          } else {
+            likeBtn.classList.remove("active-reaction");
+            dislikeBtn.classList.remove("active-reaction");
+          }
+        }
+      });
+    });
+  });
+
   /**
-   * Retrieves the CSRF token from the page.
-   * @returns {string} CSRF token value
+   * Retrieves the CSRF token from cookie or form
    */
   function getCSRFToken() {
-    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const metaToken = document.querySelector('[name=csrfmiddlewaretoken]');
+    if (metaToken) return metaToken.value;
+
+    const name = "csrftoken=";
+    const decodedCookies = decodeURIComponent(document.cookie).split(';');
+    for (let cookie of decodedCookies) {
+      cookie = cookie.trim();
+      if (cookie.startsWith(name)) {
+        return cookie.substring(name.length);
+      }
+    }
+    return '';
   }
+
 
   /**
    * ================================
