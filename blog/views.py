@@ -7,7 +7,7 @@ from django.views import generic
 from django.views.decorators.csrf import csrf_protect
 
 
-from .models import Post, Comment, Reaction
+from .models import Post, Comment
 from .forms import CommentForm
 
 
@@ -34,8 +34,6 @@ def post_detail(request, slug):
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
 
-    comment_form = CommentForm()
-
     if request.method == "POST":
         if request.user.is_authenticated:
             comment_form = CommentForm(data=request.POST)
@@ -55,6 +53,8 @@ def post_detail(request, slug):
                 messages.ERROR,
                 'You must be logged in to comment'
             )
+
+    comment_form = CommentForm()
 
     return render(
         request,
@@ -183,57 +183,33 @@ def comment_delete(request, slug, comment_id):
 @csrf_protect
 def update_reaction(request):
     """
-    Handle user reactions (like or dislike) to a comment.
+    Handle POST requests to update the like or dislike count for a comment.
 
-    Only POST requests from authenticated users are processed.
-    Each user can react (like/dislike) only once per comment.
-    If the user has already reacted, no additional reaction is recorded.
+    This view expects a POST request containing:
+    - 'comment_id': the ID of the comment to update
+    - 'action': a string, either 'like' or 'dislike'
 
-    Request POST parameters:
-        - comment_id (int): ID of the comment being reacted to.
-        - action (str): Either "like" or "dislike".
-
-    Returns:
-        JsonResponse:
-            - likes (int): Total number of likes on the comment.
-            - dislikes (int): Total number of dislikes on the comment.
-            - liked (bool): Whether the current user liked the comment.
-            - disliked (bool): Whether the current user disliked the comment.
-        OR
-            - error (str): Error message with appropriate HTTP status code.
+    The user must be authenticated, and the request must be a POST request.
+    If the comment is found and the action is valid, the like/dislike count
+    is updated.
     """
     if request.method == "POST" and request.user.is_authenticated:
         comment_id = request.POST.get("comment_id")
         action = request.POST.get("action")
 
         try:
-            # Attempt to retrieve the targeted comment
             comment = Comment.objects.get(pk=comment_id)
 
-            # Ensure the user hasn't already reacted to this comment
-            if comment.reactions.filter(user=request.user).count() == 0:
-                if action == "like":
-                    Reaction.objects.create(
-                        comment=comment,
-                        user=request.user,
-                        reaction_type=1  # 1 = like
-                    )
-                elif action == "dislike":
-                    Reaction.objects.create(
-                        comment=comment,
-                        user=request.user,
-                        reaction_type=0  # 0 = dislike
-                    )
+            if action == "like":
+                comment.likes += 1
+            elif action == "dislike":
+                comment.dislikes += 1
 
-            user_reactions = comment.reactions.filter(user=request.user)
-            liked = user_reactions.filter(reaction_type=1).count() == 1
-            disliked = user_reactions.filter(reaction_type=0).count() == 1
+            comment.save()
 
             return JsonResponse({
                 'likes': comment.likes,
-                'dislikes': comment.dislikes,
-                'liked': liked,
-                'disliked': disliked,
+                'dislikes': comment.dislikes
             })
 
         except Comment.DoesNotExist:

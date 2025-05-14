@@ -43,28 +43,27 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(
-        User, related_name="comments", on_delete=models.CASCADE)
-    body = models.TextField(blank=True, null=True)
-
-    # remove the likes and dislikes attributes
-
-    # See note on @property below
-    def likes(self):
-        return self.reactions.filter(reaction_type=1).count()
-
-    def dislikes(self):
-        return self.reactions.filter(reaction_type=0).count()
-
-
-class Reaction(models.Model):
-    REACTION_TYPES = (
-        (0, "dislike"),
-        (1, "like"),
+    """
+    Model representing a comment left on a post.
+    """
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name="comments"
     )
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="commenter"
+    )
+    body = models.TextField()
+    approved = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
 
-    reaction_type = models.IntegerField(choices=REACTION_TYPES)
-    user = models.ForeignKey(
-        User, related_name="reactions", on_delete=models.CASCADE)
-    comment = models.ForeignKey(
-        Comment, related_name="reactions", on_delete=models.CASCADE)
+    # 👍 Count of likes for this comment
+    likes = models.PositiveIntegerField(default=0)
+
+    # 👎 Count of dislikes for this comment
+    dislikes = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        return f"Comment by {self.author} on '{self.post.title}'"
