@@ -83,10 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(response => response.json())
     .then(data => {
-      if (!data.error) {
+     if (!data.error) {
         container.querySelector('.like-count').textContent = data.likes;
         container.querySelector('.dislike-count').textContent = data.dislikes;
-      }
+      } 
     });
   }
 

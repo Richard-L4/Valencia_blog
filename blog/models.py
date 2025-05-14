@@ -67,3 +67,30 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment by {self.author} on '{self.post.title}'"
+
+
+class CommentReaction(models.Model):
+    """
+    Stores a single user's like or dislike reaction to a comment.
+    Each user can only react once per comment.
+    """
+    LIKE = 'like'
+    DISLIKE = 'dislike'
+    REACTION_CHOICES = [
+        (LIKE, 'Like'),
+        (DISLIKE, 'Dislike'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.ForeignKey(
+        Comment, on_delete=models.CASCADE, related_name='reactions')
+    reaction = models.CharField(max_length=7, choices=REACTION_CHOICES)
+
+    class Meta:
+        unique_together = ('user', 'comment')
+
+    def __str__(self):
+        return (
+
+         f"{self.user} reacted '{self.reaction}' to comment {self.comment.id}"
+        )

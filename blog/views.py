@@ -7,7 +7,7 @@ from django.views import generic
 from django.views.decorators.csrf import csrf_protect
 
 
-from .models import Post, Comment
+from .models import Post, Comment, CommentReaction
 from .forms import CommentForm
 
 
@@ -182,37 +182,50 @@ def comment_delete(request, slug, comment_id):
 @login_required
 @csrf_protect
 def update_reaction(request):
-    """
-    Handle POST requests to update the like or dislike count for a comment.
-
-    This view expects a POST request containing:
-    - 'comment_id': the ID of the comment to update
-    - 'action': a string, either 'like' or 'dislike'
-
-    The user must be authenticated, and the request must be a POST request.
-    If the comment is found and the action is valid, the like/dislike count
-    is updated.
-    """
-    if request.method == "POST" and request.user.is_authenticated:
+    if request.method == "POST":
         comment_id = request.POST.get("comment_id")
-        action = request.POST.get("action")
+        action = request.POST.get("action")  # either 'like' or 'dislike'
+
+        if action not in ['like', 'dislike']:
+            return JsonResponse({'error': 'Invalid action'}, status=400)
 
         try:
             comment = Comment.objects.get(pk=comment_id)
-
-            if action == "like":
-                comment.likes += 1
-            elif action == "dislike":
-                comment.dislikes += 1
-
-            comment.save()
-
-            return JsonResponse({
-                'likes': comment.likes,
-                'dislikes': comment.dislikes
-            })
-
         except Comment.DoesNotExist:
             return JsonResponse({'error': 'Comment not found'}, status=404)
+
+        # Check for existing reaction by this user
+        reaction, created = CommentReaction.objects.get_or_create(
+            user=request.user,
+            comment=comment,
+            defaults={'reaction': action}
+        )
+
+        if not created:
+            if reaction.reaction == action:
+                return JsonResponse({'error': 'Already reacted'}, status=400)
+            else:
+                # User is switching their reaction
+                if reaction.reaction == 'like':
+                    comment.likes -= 1
+                else:
+                    comment.dislikes -= 1
+
+                reaction.reaction = action
+                reaction.save()
+
+        # Apply the new reaction
+        if action == 'like':
+            comment.likes += 1
+        elif action == 'dislike':
+            comment.dislikes += 1
+
+        comment.save()
+
+        return JsonResponse({
+            'likes': comment.likes,
+            'dislikes': comment.dislikes,
+            'message': 'Reaction updated successfully'
+        })
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
