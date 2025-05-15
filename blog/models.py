@@ -56,10 +56,10 @@ class Comment(models.Model):
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
 
-    # 👍 Count of likes for this comment
+    #  Count of likes for this comment
     likes = models.PositiveIntegerField(default=0)
 
-    # 👎 Count of dislikes for this comment
+    #  Count of dislikes for this comment
     dislikes = models.PositiveIntegerField(default=0)
 
     class Meta:

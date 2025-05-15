@@ -96,6 +96,9 @@ def edit_post(request, slug):
 
 @login_required
 def delete_post(request, slug):
+    """
+    Delete an existing blog post if the user is the author.
+    """
     post = get_object_or_404(Post, slug=slug)
 
     # Ensure that only the author of the post or an admin can delete it
@@ -179,10 +182,13 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
-
 @login_required
 @csrf_protect
 def update_reaction(request):
+    """
+    Custom reaction for the Reaction model.
+    Prevents user's reacting more than once to a like or dislike.
+    """
     if request.method == "POST":
         comment_id = request.POST.get("comment_id")
         action = request.POST.get("action")  # either 'like' or 'dislike'
@@ -204,7 +210,7 @@ def update_reaction(request):
 
         if not created:
             if reaction.reaction == action:
-                return JsonResponse({'error': 'Already reacted'}, status=400)
+                return JsonResponse({'error': 'Already reacted'}, status=200)
             else:
                 # User is switching their reaction
                 if reaction.reaction == 'like':
