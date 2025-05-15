@@ -118,6 +118,10 @@
 
 ![Alt text](static/images/Edit-post-val.png)
 
+### Delete Post Page - For Admin authorised users (Source Code)
+
+![Alt text](static/images/Post-delete.png)
+
 ### About Page (Source Code)
 
 ![Alt text](static/images/About-val.png)
@@ -138,7 +142,7 @@
 
 ## CSS W3C Validator
 
-### Satic CSS
+### Static CSS
 
 ![Alt text](static/images/Static-css.png)
 
@@ -170,6 +174,10 @@
 
 ![Alt text](static/images/Edit-post-lighthouse.png)
 
+###
+
+![Alt text](static/images/Lighthouse-post-delete.png)
+
 ### About Page
 
 ![Alt text](static/images/About-lighthouse.png)
@@ -186,6 +194,6 @@
 
 ![Alt text](static/images/Lighthouse-logout.png)
 
---
+---
 
 
