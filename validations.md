@@ -30,7 +30,7 @@
 
 ![Alt text](static/images/About-views.png)
 
---
+---
 
 ## Python - Blog
 
@@ -58,7 +58,7 @@
 
 ![Alt text](static/images/Blog-views.png)
 
---
+---
 
 ## Python - Valencia
 
@@ -78,7 +78,7 @@
 
 ![Alt text](static/images/Valencia-wsgi.png)
 
---
+---
 
 ## JS Hint 
 
@@ -86,7 +86,7 @@
 
 ![Alt text](static/images/Javascript.png)
 
---
+---
 
 ## HTML  W3C Validation
 
@@ -150,7 +150,7 @@
 
 ![Alt text](static/images/Staticfiles-css.png)
 
---
+---
 
 ## Lighthouse Checks
 
@@ -193,6 +193,8 @@
 ### Logout Page
 
 ![Alt text](static/images/Lighthouse-logout.png)
+
+[Back to Top](#top)
 
 ---
 
