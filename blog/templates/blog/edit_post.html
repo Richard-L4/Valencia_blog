@@ -1,25 +1,37 @@
+{# Use the base template to maintain consistent layout and styling #}
 {% extends "base.html" %}
+
+{# Load the 'static' template tag library so we can reference static files like images #}
 {% load static %}
 
 {% block content %}
 <div class="container mt-5">
   <h2>Edit Post</h2>
 
-  {# Show current featured image (if any) #}
+  {# Check if the post has a featured image to display #}
   {% if post.featured_image %}
     <div class="mb-4">
       <p>Current Image:</p>
+
+      {# If the current image is a placeholder, show a default image from the static files #}
       {% if "placeholder" in post.featured_image.url %}
         <img src="{% static 'images/default.jpg' %}" alt="Default Image" style="max-width: 300px;">
       {% else %}
+        {# Otherwise, display the actual featured image uploaded for the post #}
         <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" style="max-width: 300px;">
       {% endif %}
     </div>
   {% endif %}
 
+  {# Form to edit the post (uses POST method and allows file upload) #}
   <form method="POST" enctype="multipart/form-data">
+    {# CSRF token is required for security against Cross-Site Request Forgery #}
     {% csrf_token %}
+
+    {# Render all form fields as paragraphs using Django’s default form rendering #}
     {{ form.as_p }}
+
+    {# Button to submit and save the changes made to the post #}
     <button type="submit" class="btn btn-primary">Save Changes</button>
   </form>
 </div>

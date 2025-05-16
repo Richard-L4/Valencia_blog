@@ -1,11 +1,22 @@
+{# Inherit the base HTML layout for consistent styling and structure #}
 {% extends "base.html" %}
 
 {% block content %}
   <div class="container mt-5" style="max-width: 500px;">
-    <h2 class="mb-4 text-center">Are you sure you want to delete the post "<em>{{ post.title }}</em>"?</h2>
+    {# Page heading asking the user to confirm post deletion #}
+    <h2 class="mb-4 text-center">
+      Are you sure you want to delete the post "<em>{{ post.title }}</em>"?
+    </h2>
+
+    {# Form to handle the post deletion confirmation #}
     <form method="POST" class="d-flex justify-content-center gap-3">
+      {# CSRF token for security (protects against Cross-Site Request Forgery) #}
       {% csrf_token %}
+
+      {# Submit button to confirm deletion #}
       <button type="submit" class="btn btn-danger fw-bold">Yes, Delete</button>
+
+      {# Link to cancel and return to the post detail page #}
       <a href="{% url 'post_detail' post.slug %}" class="btn btn-secondary fw-bold">Cancel</a>
     </form>
   </div>
