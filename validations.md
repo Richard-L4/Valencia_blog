@@ -116,7 +116,7 @@
 
 ### Edit Post Page - For Admin authorised users (Source Code)
 
-![Alt text](static/images/Edit-post-val.png)
+![Alt text](static/images/Edit-page.png)
 
 ### Delete Post Page - For Admin authorised users (Source Code)
 
@@ -138,7 +138,7 @@
 
 ![Alt text](static/images/Logou-val.png)
 
---
+---
 
 ## CSS W3C Validator
 
@@ -172,9 +172,9 @@
 
 ### Edit Post Page
 
-![Alt text](static/images/Edit-post-lighthouse.png)
+![Alt text](static/images/Lighthouse-edit-post.png)
 
-###
+### Delete Post Page
 
 ![Alt text](static/images/Lighthouse-post-delete.png)
 
