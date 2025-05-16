@@ -1,9 +1,23 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 <div class="container mt-5">
   <h2>Edit Post</h2>
-  <form method="POST">
+
+  {# Show current featured image (if any) #}
+  {% if post.featured_image %}
+    <div class="mb-4">
+      <p>Current Image:</p>
+      {% if "placeholder" in post.featured_image.url %}
+        <img src="{% static 'images/default.jpg' %}" alt="Default Image" style="max-width: 300px;">
+      {% else %}
+        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" style="max-width: 300px;">
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Save Changes</button>

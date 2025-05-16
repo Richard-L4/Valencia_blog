@@ -84,10 +84,11 @@ def edit_post(request, slug):
 
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES, instance=post)
-        # Handle file upload if needed
+        # Handle file upload if needed allow slug and title edit
         if form.is_valid():
-            form.save()
-            return redirect('post_detail', slug=slug)
+            updated_post = form.save()
+            return redirect('post_detail', slug=updated_post.slug)
+
     else:
         form = PostForm(instance=post)
 
