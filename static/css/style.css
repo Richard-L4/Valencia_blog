@@ -47,7 +47,6 @@ body {
     background-color: #d5f0f2;
 }
 
-
 .card-hover:hover {
     transform: scale(1.02);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -59,12 +58,9 @@ body {
     height: auto;
 }
 
-
 .card {
     box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.05);
 }
-
-
 
 .image-container {
     position: relative;
@@ -186,7 +182,7 @@ body {
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
     align-items: center;
-    justify-content: flex-start; /* You can change this to 'center' or 'flex-end' */
+    justify-content: flex-start; 
 }
 
 .reaction-buttons button {
@@ -208,7 +204,6 @@ body {
     margin-left: 0.3125rem;
     font-weight: bold;
 }
-
 
 .btn-like {
     color: #E84610;

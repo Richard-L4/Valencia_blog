@@ -1,3 +1,4 @@
+{# Load static files and assign named URLs for easier use in navigation #}
 {% load static %}
 
 {% url 'home' as home_url %}
@@ -11,10 +12,11 @@
 
 <head>
     <title>Valencia Blog</title>
+    <!-- Meta tags for responsive design, Google settings, and page description -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google" content="notranslate">
     <meta name="description" content="An informative blog on Valencia.">
-
+    <!-- Favicon for various devices and browsers -->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon.ico/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon.ico/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon.ico/favicon-16x16.png' %}">

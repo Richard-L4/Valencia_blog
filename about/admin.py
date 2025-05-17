@@ -13,8 +13,7 @@ class AboutAdmin(SummernoteModelAdmin):
 
 
 # Note: SummernoteModelAdmin is used above to integrate the Summernote
-#       WYSIWYG editor. Otherwise, we typically inherit from admin.ModelAdmin,
-#       as shown below.
+#       WYSIWYG editor.
 
 @admin.register(CollaborateRequest)
 class CollaborateRequestAdmin(admin.ModelAdmin):

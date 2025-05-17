@@ -16,7 +16,7 @@ body {
 .flag-icon {
     height: 1.25rem;
     width: auto;
-    border-radius: 0.1875rem; /* or 50% if you want it circular */
+    border-radius: 0.1875rem;
   }
 
 .navbar .navbar-text {
@@ -56,15 +56,7 @@ body {
 .image-container {
     position: relative;
 }
-/*
-.image-flash {
-    position: absolute;
-    bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #188181;
-}
-*/
+
 .scale {
     width: 100%;
     height: auto;
@@ -176,7 +168,7 @@ body {
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
     align-items: center;
-    justify-content: flex-start; /* You can change this to 'center' or 'flex-end' */
+    justify-content: flex-start; 
 }
 
 .reaction-buttons button {
@@ -198,7 +190,6 @@ body {
     margin-left: 0.3125rem;
     font-weight: bold;
 }
-
 
 .btn-like {
     color: #E84610;
@@ -243,7 +234,7 @@ body {
 @media screen and (max-width: 768px) {
     .masthead {
         flex-direction: column; /* Stack items vertically */
-        text-align: center; /* Optional: center text */
+        text-align: center; 
     }
 
     .masthead-image img {
