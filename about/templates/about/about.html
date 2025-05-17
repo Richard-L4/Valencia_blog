@@ -1,43 +1,62 @@
+{# Inherit the base layout for consistent styling across pages #}
 {% extends 'base.html' %}
+
+{# Load static files such as images or CSS from the static directory #}
 {% load static %}
+
+{# Load crispy forms template tags to render forms with Bootstrap formatting #}
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-12 col-md-4 text-center">
-      {% if "placeholder" in about.profile_image.url %}
-      <img src="{% static 'images/nobody.jpg' %}" class="profile-image" alt="placeholder image">
-      {% else %}
-      <img src="{{ about.profile_image.url }}" class="profile-image" alt="{{ about.title }}">
-      {% endif %}
-    </div>
-    <div class="col-12 col-md-8">
-      <h2>{{ about.title }}</h2>
-      {{ about.content | safe }}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col text-right">
-      <!-- Updated on field goes in here -->
+  <div class="container mt-5">
+    
+    <div class="row">
+      <div class="col-12 col-md-4 text-center">
+        {# Display a placeholder image if the profile image is not set #}
+        {% if "placeholder" in about.profile_image.url %}
+          <img src="{% static 'images/default.jpg' %}" class="profile-image" alt="placeholder image">
+        {% else %}
+          {# Display the uploaded profile image if available #}
+          <img src="{{ about.profile_image.url }}" class="profile-image" alt="{{ about.title }}">
+        {% endif %}
+      </div>
 
-      <p class="text-end"><em>Updated on: {{ about.updated_on }}</em></p>
+      <div class="col-12 col-md-8">
+        {# Display the title and main content of the About section #}
+        <h2>{{ about.title }}</h2>
+        {{ about.content | safe }}
+      </div>
     </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-6 my-5">
-      <h2>Let's work together!</h2>
-      <p>Whether you've got a project to share, want to write together, or simply want to explore new ideas, I'm eager to connect. Fill out
-        the form, and let's make things happen!</p>
 
-      <!-- add your form here. Your submit button should 
-                                have the classes of btn, btn-secondary -->
-      <form method="post">
-        {{ collaborate_form | crispy }}
-        {% csrf_token %}
-        <button class="btn btn-secondary" type="submit">Submit</button>
-      </form>
+    <div class="row">
+      <div class="col text-right">
+        {# Show the date and time the About content was last updated #}
+        <p class="text-end"><em>Updated on: {{ about.updated_on }}</em></p>
+      </div>
     </div>
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 my-5">
+        {# Heading and introductory text for the collaboration form #}
+        <h2>Let's work together!</h2>
+        <p>
+          Whether you've got a project to share, want to write together, or simply want to explore new ideas, 
+          I'm eager to connect. Fill out the form, and let's make things happen!
+        </p>
+
+        {# Collaboration form using crispy forms for styling #}
+        <form method="post">
+          {# Render form fields using crispy forms #}
+          {{ collaborate_form | crispy }}
+
+          {# CSRF token for security to prevent Cross-Site Request Forgery attacks #}
+          {% csrf_token %}
+          
+          {# Submit button styled using Bootstrap's secondary button class #}
+          <button class="btn btn-secondary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
   </div>
-</div>
 {% endblock content %}
