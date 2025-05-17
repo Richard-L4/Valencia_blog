@@ -10,10 +10,15 @@
 
 <body>
     <h1>Posts list</h1>
+      <!-- Start of Django template loop to display each post in object_list -->
     {% for post in object_list %}
+       <!-- Displays the title of the current post -->
     <h2>{{post.title}}</h2>
+      <!-- Displays the excerpt/summary of the current post -->
     <p>{{post.excerpt}}</p>
+       <!-- Displays the author of the current post -->
     <p>Author: {{post.author}}</p>
+        <!-- End of Django template loop -->
     {% endfor %}
 </body>
 

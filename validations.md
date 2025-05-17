@@ -122,6 +122,10 @@
 
 ![Alt text](static/images/Post-delete.png)
 
+### Post List Page (Source Code)
+
+![Alt text](static/images/Post-list-html-val.png)
+
 ### About Page (Source Code)
 
 ![Alt text](static/images/About-val.png)
