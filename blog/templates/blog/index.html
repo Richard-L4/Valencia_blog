@@ -57,14 +57,14 @@
   <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
 
-      {# Show the "Previous" button on previous page #}
+      {# Show the "Previous" button for previous page #}
       {% if page_obj.has_previous %}
       <li class="page-item">
         <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
       </li>
       {% endif %}
 
-      {# Show the "Next" button on next page #}
+      {# Show the "Next" button for next page #}
       {% if page_obj.has_next %}
       <li class="page-item">
         <a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo;</a>
