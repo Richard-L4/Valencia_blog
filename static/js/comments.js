@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /**
    * Changes text content of translatable elements based on selected language.
-   * @param {string} lang - Language code ('en', 'es', etc.)
+   * @param {string} lang - Language code ('en', 'es')
    */
   function changeLanguage(lang) {
     const guideElement = document.querySelector('[data-translate="guide"]');

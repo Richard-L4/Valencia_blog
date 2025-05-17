@@ -111,7 +111,7 @@ def delete_post(request, slug):
     if request.method == "POST":
         post.delete()
         messages.success(request, "Post deleted successfully.")
-        return redirect('home')  # Replace with your homepage URL name
+        return redirect('home')
 
     return render(request, 'blog/delete_post.html', {'post': post})
 
