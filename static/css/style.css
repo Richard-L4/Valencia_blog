@@ -20,7 +20,7 @@ body {
 .flag-icon {
     height: 20px;
     width: auto;
-    border-radius: 0.1875rem; /* or 50% if you want it circular */
+    border-radius: 0.1875rem; /* to help style the flag */
   }
 
 .navbar .navbar-text {
