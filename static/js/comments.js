@@ -174,8 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (lang === 'es') {
         guideElement.textContent = "Una guía de Comunidad Valenciana";
       }
-    } else {
-      console.error('Guide element not found!');
-    }
+    } 
   }
 });
