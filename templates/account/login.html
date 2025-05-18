@@ -1,10 +1,16 @@
+{# Extend the base site layout #}
 {% extends "base.html" %}
 
+{# Load internationalization tags #}
 {% load i18n %}
+
+{# Load account and social account tags for authentication features #}
 {% load account socialaccount %}
 
+{# Set the page title in the HTML <title> tag using a translation string #}
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
+{# Begin the main content block #}
 {% block content %}
 
 <div class="container">
@@ -12,22 +18,38 @@
         <div class="col-md-8 mt-3 offset-md-2">
             <h3>{% trans "Sign In" %}</h3>
 
-           <p>{% blocktrans %}Welcome back to the Valencia|ES blog. To leave a comment or like a post, sign in, or create an account.<a class="link" href="{{ signup_url }}"> sign up </a> first.{% endblocktrans %}</p>
-
-
+            {# Translatable welcome message with a dynamic sign-up link #}
+            <p>
+                {% blocktrans %}
+                Welcome back to the Valencia|ES blog. To leave a comment or like a post, sign in, or create an account.
+                <a class="link" href="{{ signup_url }}">sign up</a> first.
+                {% endblocktrans %}
+            </p>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2">
+
+            {# Login form starts here; posts data to the account_login URL #}
             <form class="login" method="POST" action="{% url 'account_login' %}">
                 {% csrf_token %}
+
+                {# Render the login form fields (username/email + password) #}
                 {{ form.as_p }}
+
+                {# Include hidden redirect field if it exists (e.g., redirect to a specific page after login) #}
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
+
+                {# Submit button for the login form #}
                 <button class="btn btn-signup right" type="submit">{% trans "Sign In" %}</button>
             </form>
+
         </div>
     </div>
 </div>
+
+{# End of the content block #}
 {% endblock %}
