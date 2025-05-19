@@ -13,6 +13,9 @@ from allauth.account.forms import SignupForm
 
 
 class PostForm(forms.ModelForm):
+    """
+    Form for creating and updating Post instances.
+    """
     class Meta:
         model = Post
         fields = ['title', 'slug', 'content',
